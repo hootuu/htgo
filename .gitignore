@@ -22,3 +22,7 @@ go.work
 
 # Go land
 .idea
+
+# GEN
+.logs
+logs
