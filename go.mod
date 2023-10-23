@@ -2,15 +2,16 @@ module github.com/hootuu/htgo
 
 go 1.20
 
-replace github.com/hootuu/tome => /Users/suuyoo.wg/hootuu/tome
-
-replace github.com/hootuu/utils => /Users/suuyoo.wg/hootuu/utils
-
-replace github.com/hootuu/htgoapi => /Users/suuyoo.wg/hootuu/htgoapi
+//replace github.com/hootuu/tome => /Users/suuyoo.wg/hootuu/tome
+//
+//replace github.com/hootuu/utils => /Users/suuyoo.wg/hootuu/utils
+//
+//replace github.com/hootuu/htgoapi => /Users/doz/Desktop/project/pgy/htgoapi
 
 require (
 	github.com/go-resty/resty/v2 v2.10.0
-	github.com/hootuu/htgoapi v0.0.0-20231015163801-dd97a624dbdd
+	github.com/hootuu/htgoapi v0.0.0-20231023042644-7c8e5387f632
+	github.com/hootuu/tome v0.0.0-20231016100625-a653460bc7ae
 	github.com/hootuu/utils v0.0.0-20230919134114-023eb8e831ed
 	github.com/rs/xid v1.5.0
 	go.uber.org/zap v1.26.0
@@ -24,7 +25,6 @@ require (
 	github.com/gookit/color v1.5.4 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/holiman/uint256 v1.2.3 // indirect
-	github.com/hootuu/tome v0.0.0-20231015163734-e0d7182c7986 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.8 // indirect

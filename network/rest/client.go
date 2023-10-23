@@ -57,6 +57,10 @@ func doWrapResponse(_ *resty.Client, response *resty.Response) error {
 var gBaseUrl string
 
 func init() {
+	//gBaseUrl = os.Getenv("hotu.gateway")
+	//if len(gBaseUrl) == 0 {
+	//	gBaseUrl = DefaultHOTUGateway
+	//}
 	gBaseUrl = configure.GetString("hotu.gateway", DefaultHOTUGateway)
 	sys.Info("HOTU Gateway [hotu.gateway]: ", gBaseUrl)
 }

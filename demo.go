@@ -9,8 +9,8 @@ import (
 
 func main() {
 	req := nvwa.VNCreateReq{
-		Token: "123",
-		ID:    "123",
+		Token: "2020eb494bebafe40c3aa1d36e93f719",
+		ID:    "NBMOJU_666",
 	}
 	resp, err := nvwax.Client.VNCreate(req)
 	if err != nil {
