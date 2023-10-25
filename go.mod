@@ -6,7 +6,7 @@ go 1.20
 //
 //replace github.com/hootuu/utils => /Users/suuyoo.wg/hootuu/utils
 //
-//replace github.com/hootuu/htgoapi => /Users/doz/Desktop/project/pgy/htgoapi
+replace github.com/hootuu/htgoapi => /Users/doz/Desktop/project/pgy/htgoapi
 
 require (
 	github.com/go-resty/resty/v2 v2.10.0

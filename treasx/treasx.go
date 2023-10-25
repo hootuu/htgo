@@ -23,3 +23,7 @@ func (c client) AccountGet(req treas.AccountGetReq) (*uc.Account, *errors.Error)
 func (c client) AccountLoad(req treas.AccountLoadReq) (*treas.AccountLoadResp, *errors.Error) {
 	return rest.Go[treas.AccountLoadResp]("/treas/acc/q", req)
 }
+
+func (c client) AlterLoad(req treas.AlterLoadReq) (*treas.AlterLoadResp, *errors.Error) {
+	return rest.Go[treas.AlterLoadResp]("/treas/acc/alter/q", req)
+}
