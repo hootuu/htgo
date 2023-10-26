@@ -4,7 +4,9 @@ import (
 	"github.com/go-resty/resty/v2"
 	"github.com/hootuu/utils/errors"
 	"github.com/hootuu/utils/logger"
+	"github.com/hootuu/utils/sys"
 	"go.uber.org/zap"
+	"time"
 )
 
 func Go[T any](
@@ -19,6 +21,11 @@ func Go[T any](
 			return nil, err
 		}
 	}
+	sys.Info("Call ", url)
+	s := time.Now().UnixMilli()
+	defer func() {
+		sys.Info("Elapse ", time.Now().UnixMilli()-s, " ms")
+	}()
 	var toResp T
 	_, nErr := req.SetResult(&toResp).Post(url)
 	if nErr != nil {

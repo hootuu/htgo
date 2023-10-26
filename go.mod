@@ -6,8 +6,8 @@ go 1.20
 require (
 	github.com/go-resty/resty/v2 v2.10.0
 	github.com/hootuu/htgoapi v1.0.2
-	github.com/hootuu/tome v1.0.1
-	github.com/hootuu/utils v1.0.1
+	github.com/hootuu/tome v1.0.2
+	github.com/hootuu/utils v1.0.2
 	github.com/rs/xid v1.5.0
 	go.uber.org/zap v1.26.0
 )
@@ -32,7 +32,7 @@ require (
 	github.com/spf13/viper v1.17.0 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/tyler-smith/go-bip39 v1.1.0 // indirect
-	github.com/xo/terminfo v0.0.0-20210125001918-ca9a967f8778 // indirect
+	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
