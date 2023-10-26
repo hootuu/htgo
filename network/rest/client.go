@@ -4,21 +4,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-resty/resty/v2"
+	"github.com/hootuu/htgo/network/htpeer"
 	"github.com/hootuu/htgoapi/htocol"
 	"github.com/hootuu/utils/configure"
 	"github.com/hootuu/utils/errors"
-	"github.com/hootuu/utils/strs"
+	"github.com/hootuu/utils/logger"
 	"github.com/hootuu/utils/sys"
 	"github.com/rs/xid"
+	"go.uber.org/zap"
 	"net/http"
 	"time"
 )
 
 type H = map[string]string
-
-const (
-	DefaultHOTUGateway = "http://localhost:9090"
-)
 
 func NewClient() *resty.Client {
 	cli := resty.New().
@@ -32,9 +30,26 @@ func NewClient() *resty.Client {
 }
 
 func doSignature(_ *resty.Client, request *http.Request) error {
-	request.Header.Add(htocol.HeaderNonce, xid.New().String())
-	request.Header.Add(htocol.HeaderTimestamp, fmt.Sprintf("%d", time.Now().UnixMilli()))
-	request.Header.Add(htocol.HeaderSignature, strs.MD5(request.RequestURI))
+	nonce := xid.New().String()
+	timestamp := fmt.Sprintf("%d", time.Now().UnixMilli())
+	vnStr := htpeer.Here().VN.S()
+	spStr := htpeer.Here().SP.S()
+	signBuilder := htocol.SignBuilder{}
+	signStr, err := signBuilder.
+		Add(htocol.HeaderNonce, nonce).
+		Add(htocol.HeaderTimestamp, timestamp).
+		Add(htocol.HeaderVN, vnStr).
+		Add(htocol.HeaderSP, spStr).
+		Sign(htpeer.Here().PrivateKey)
+	if err != nil {
+		logger.Logger.Error("sign failed:", zap.Error(err))
+		return err
+	}
+	request.Header.Add(htocol.HeaderNonce, nonce)
+	request.Header.Add(htocol.HeaderTimestamp, timestamp)
+	request.Header.Add(htocol.HeaderVN, vnStr)
+	request.Header.Add(htocol.HeaderSP, spStr)
+	request.Header.Add(htocol.HeaderSignature, signStr)
 	return nil
 }
 
@@ -57,10 +72,6 @@ func doWrapResponse(_ *resty.Client, response *resty.Response) error {
 var gBaseUrl string
 
 func init() {
-	//gBaseUrl = os.Getenv("hotu.gateway")
-	//if len(gBaseUrl) == 0 {
-	//	gBaseUrl = DefaultHOTUGateway
-	//}
-	gBaseUrl = configure.GetString("hotu.gateway", DefaultHOTUGateway)
+	gBaseUrl = configure.GetString("hotu.gateway", "http://localhost:9090")
 	sys.Info("HOTU Gateway [hotu.gateway]: ", gBaseUrl)
 }
