@@ -1,7 +1,14 @@
 module github.com/hootuu/htgo
 
 go 1.20
-
+//replace github.com/hootuu/tome => /Users/suuyoo.wg/hootuu/tome
+//
+//replace github.com/hootuu/utils => /Users/suuyoo.wg/hootuu/utils
+//
+//replace github.com/hootuu/htgoapi => /Users/doz/Desktop/project/pgy/htgoapi
+//replace github.com/hootuu/tome => ../tome
+//replace github.com/hootuu/utils => ../utils
+//replace github.com/hootuu/htgoapi => ../htgoapi
 
 require (
 	github.com/go-resty/resty/v2 v2.10.0
