@@ -21,13 +21,14 @@ func Go[T any](
 			return nil, err
 		}
 	}
-	sys.Info("Call ", url)
 	s := time.Now().UnixMilli()
 	defer func() {
 		sys.Info("Elapse ", time.Now().UnixMilli()-s, " ms")
 	}()
+	logger.Logger.Info("Call ", zap.String("url", url))
 	var toResp T
 	_, nErr := req.SetResult(&toResp).Post(url)
+	logger.Logger.Info("Call Return", zap.String("url", url))
 	if nErr != nil {
 		logger.Logger.Error("resty.post failed", zap.Error(nErr))
 		return nil, errors.Sys("go [" + url + " ] failed: " + nErr.Error())

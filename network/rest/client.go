@@ -20,9 +20,11 @@ type H = map[string]string
 
 func NewClient() *resty.Client {
 	cli := resty.New().
+		SetRetryWaitTime(1 * time.Second).
+		SetRetryMaxWaitTime(3 * time.Second).
 		SetBaseURL(gBaseUrl).
 		SetPreRequestHook(doSignature).
-		OnAfterResponse(doWrapResponse)
+		OnAfterResponse(doWrapResponse).SetTimeout(60 * time.Second)
 	if sys.RunMode.IsRd() {
 		cli.EnableTrace()
 	}
